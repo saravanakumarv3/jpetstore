@@ -1,0 +1,104 @@
+-------------------------------------------------------------------------------
+Test set: org.mybatis.jpetstore.ScreenTransitionIT
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 10, Errors: 0, Skipped: 0, Time elapsed: 21.421 s <<< FAILURE! - in org.mybatis.jpetstore.ScreenTransitionIT
+testOrder  Time elapsed: 3.189 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testOrder(ScreenTransitionIT.java:71)
+
+testRegistrationUser  Time elapsed: 2.013 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testRegistrationUser(ScreenTransitionIT.java:186)
+
+testLogoContent  Time elapsed: 2.026 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testLogoContent(ScreenTransitionIT.java:413)
+
+testSelectItems  Time elapsed: 2.018 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testSelectItems(ScreenTransitionIT.java:235)
+
+testUpdateProfile  Time elapsed: 2.029 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testUpdateProfile(ScreenTransitionIT.java:156)
+
+testMainImageContentOnTopPage  Time elapsed: 2.023 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testMainImageContentOnTopPage(ScreenTransitionIT.java:372)
+
+testQuickLinks  Time elapsed: 2.026 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testQuickLinks(ScreenTransitionIT.java:341)
+
+testSidebarContentOnTopPage  Time elapsed: 2.028 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testSidebarContentOnTopPage(ScreenTransitionIT.java:305)
+
+testViewCart  Time elapsed: 2.026 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testViewCart(ScreenTransitionIT.java:272)
+
+testViewHelp  Time elapsed: 2.027 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"">
+to be equal to:
+ <"JPetStore Demo">
+but was not.
+	at org.mybatis.jpetstore.ScreenTransitionIT.testViewHelp(ScreenTransitionIT.java:289)
+
