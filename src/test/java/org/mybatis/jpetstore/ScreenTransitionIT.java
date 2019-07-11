@@ -1,5 +1,5 @@
 /**
- *    Copyright ${license.git.copyrightYears} the original author or authors.
+ *    Copyright 2010-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,48 +15,43 @@
  */
 package org.mybatis.jpetstore;
 
-import static com.codeborne.selenide.Browsers.HTMLUNIT;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.value;
-import static com.codeborne.selenide.Configuration.baseUrl;
-import static com.codeborne.selenide.Configuration.browser;
-import static com.codeborne.selenide.Configuration.timeout;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.title;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.junit5.ScreenShooterExtension;
+import com.codeborne.selenide.junit.ScreenShooter;
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
+import org.openqa.selenium.By;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Configuration.*;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.*;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * Integration tests for screen transition.
  *
  * @author Kazuki Shimizu
  */
-@ExtendWith(ScreenShooterExtension.class)
-class ScreenTransitionIT {
+public class ScreenTransitionIT {
 
-  @BeforeAll
-  static void setupSelenide() {
+  @Rule
+  public ScreenShooter screenShooter = ScreenShooter.failedTests();
+
+  @BeforeClass
+  public static void setupSelenide() {
     browser = HTMLUNIT;
     timeout = TimeUnit.SECONDS.toMillis(10);
     baseUrl = "http://localhost:8080/jpetstore";
   }
 
-  @AfterEach
-  void logout() {
+  @After
+  public void logout() {
     SelenideElement element = $(By.linkText("Sign Out"));
     if (element.exists()) {
       element.click();
@@ -64,12 +59,11 @@ class ScreenTransitionIT {
   }
 
   @Test
-  void testOrder() {
+  public void testOrder() {
 
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
-    $(By.cssSelector("#Content h2")).shouldBe(text("Welcome to JPetStore 6"));
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
@@ -95,32 +89,9 @@ class ScreenTransitionIT {
     $(By.linkText("Add to Cart")).click();
     $(By.cssSelector("#Catalog h2")).shouldBe(text("Shopping Cart"));
 
-    // Add a item to the cart
-    $(By.cssSelector("#QuickLinks a:nth-of-type(5)")).click();
-    $(By.linkText("AV-CB-01")).click();
-    $(By.linkText("EST-18")).click();
-    $(By.linkText("Add to Cart")).click();
-    $(By.cssSelector("#Cart tr:nth-of-type(4) td")).shouldBe(text("Sub Total: $199.00"));
-
-    // Update quantity
-    $(By.name("EST-20")).setValue("10");
-    $(By.name("updateCartQuantities")).click();
-    $(By.cssSelector("#Catalog tr td:nth-of-type(7)")).shouldBe(text("$55.00"));
-    $(By.cssSelector("#Cart tr:nth-of-type(4) td")).shouldBe(text("Sub Total: $248.50"));
-
-    // Remove item
-    $(By.cssSelector("#Cart tr:nth-of-type(2) td:nth-of-type(8) a")).click();
-    $(By.cssSelector("#Cart tr:nth-of-type(3) td")).shouldBe(text("Sub Total: $55.00"));
-
     // Checkout cart items
     $(By.linkText("Proceed to Checkout")).click();
     assertThat(title()).isEqualTo("JPetStore Demo");
-
-    // Changing shipping address
-    $(By.name("shippingAddressRequired")).click();
-    $(By.name("newOrder")).click();
-    $(By.cssSelector("#Catalog tr th")).shouldBe(text("Shipping Address"));
-    $(By.name("order.shipAddress2")).setValue("MS UCUP02-207");
 
     // Confirm order information
     $(By.name("newOrder")).click();
@@ -150,7 +121,7 @@ class ScreenTransitionIT {
   }
 
   @Test
-  void testUpdateProfile() {
+  public void testUpdateProfile() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -172,15 +143,13 @@ class ScreenTransitionIT {
     $$(By.cssSelector("#Catalog table td")).get(1).shouldBe(text("j2ee"));
 
     // Edit account
-    $(By.name("account.phone")).setValue("555-555-5556");
     $(By.name("editAccount")).click();
     $(By.cssSelector("#Catalog h3")).shouldBe(text("User Information"));
     $$(By.cssSelector("#Catalog table td")).get(1).shouldBe(text("j2ee"));
-    $(By.name("account.phone")).shouldBe(value("555-555-5556"));
   }
 
   @Test
-  void testRegistrationUser() {
+  public void testRegistrationUser() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -229,7 +198,7 @@ class ScreenTransitionIT {
   }
 
   @Test
-  void testSelectItems() {
+  public void testSelectItems() {
     // Open the home page
     open("/");
     assertThat(title()).isEqualTo("JPetStore Demo");
@@ -265,7 +234,7 @@ class ScreenTransitionIT {
   }
 
   @Test
-  void testViewCart() {
+  public void testViewCart() {
 
     // Open the home page
     open("/");
@@ -282,7 +251,7 @@ class ScreenTransitionIT {
   }
 
   @Test
-  void testViewHelp() {
+  public void testViewHelp() {
 
     // Open the home page
     open("/");
@@ -296,136 +265,6 @@ class ScreenTransitionIT {
     $(By.linkText("?")).click();
     $(By.cssSelector("#Content h1")).shouldBe(text("JPetStore Demo"));
 
-  }
-
-  @Test
-  void testSidebarContentOnTopPage() {
-    // Open the home page
-    open("/");
-    assertThat(title()).isEqualTo("JPetStore Demo");
-
-    // Move to the top page
-    $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
-
-    // Move to Fish category
-    $(By.cssSelector("#SidebarContent a:nth-of-type(1)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Fish"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Dogs category
-    $(By.cssSelector("#SidebarContent a:nth-of-type(2)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Dogs"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Cats category
-    $(By.cssSelector("#SidebarContent a:nth-of-type(3)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Cats"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Reptiles category
-    $(By.cssSelector("#SidebarContent a:nth-of-type(4)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Reptiles"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Birds category
-    $(By.cssSelector("#SidebarContent a:nth-of-type(5)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Birds"));
-    $(By.linkText("Return to Main Menu")).click();
-  }
-
-  @Test
-  void testQuickLinks() {
-    // Open the home page
-    open("/");
-    assertThat(title()).isEqualTo("JPetStore Demo");
-
-    // Move to the top page
-    $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
-
-    // Move to Fish category
-    $(By.cssSelector("#QuickLinks a:nth-of-type(1)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Fish"));
-
-    // Move to Dogs category
-    $(By.cssSelector("#QuickLinks a:nth-of-type(2)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Dogs"));
-
-    // Move to Reptiles category
-    $(By.cssSelector("#QuickLinks a:nth-of-type(3)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Reptiles"));
-
-    // Move to Cats category
-    $(By.cssSelector("#QuickLinks a:nth-of-type(4)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Cats"));
-
-    // Move to Birds category
-    $(By.cssSelector("#QuickLinks a:nth-of-type(5)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Birds"));
-  }
-
-  @Test
-  void testMainImageContentOnTopPage() {
-    // Open the home page
-    open("/");
-    assertThat(title()).isEqualTo("JPetStore Demo");
-
-    // Move to the top page
-    $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
-
-    // Move to Birds category
-    $(By.cssSelector("#MainImageContent area:nth-of-type(1)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Birds"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Fish category
-    $(By.cssSelector("#MainImageContent area:nth-of-type(2)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Fish"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Dogs category
-    $(By.cssSelector("#MainImageContent area:nth-of-type(3)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Dogs"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Reptiles category
-    $(By.cssSelector("#MainImageContent area:nth-of-type(4)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Reptiles"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Cats category
-    $(By.cssSelector("#MainImageContent area:nth-of-type(5)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Cats"));
-    $(By.linkText("Return to Main Menu")).click();
-
-    // Move to Birds category
-    $(By.cssSelector("#MainImageContent area:nth-of-type(6)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Birds"));
-    $(By.linkText("Return to Main Menu")).click();
-  }
-
-  @Test
-  void testLogoContent() {
-    // Open the home page
-    open("/");
-    assertThat(title()).isEqualTo("JPetStore Demo");
-
-    // Move to the top page
-    $(By.linkText("Enter the Store")).click();
-    $(By.id("WelcomeContent")).shouldBe(text(""));
-
-    // Move to Birds category
-    $(By.cssSelector("#MainImageContent area:nth-of-type(1)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Birds"));
-
-    // Move to top by clicking logo
-    $(By.cssSelector("#LogoContent a")).click();
-
-    // Move to Cats category
-    $(By.cssSelector("#MainImageContent area:nth-of-type(5)")).click();
-    $(By.cssSelector("#Catalog h2")).shouldBe(text("Cats"));
   }
 
   private static String extractOrderId(String target) {

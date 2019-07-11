@@ -1,5 +1,5 @@
 /**
- *    Copyright ${license.git.copyrightYears} the original author or authors.
+ *    Copyright 2010-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -63,6 +63,14 @@ public class Item implements Serializable {
 
   public void setProduct(Product product) {
     this.product = product;
+  }
+
+  public String getProductId() {
+    return productId;
+  }
+
+  public void setProductId(String productId) {
+    this.productId = productId;
   }
 
   public int getSupplierId() {
@@ -139,7 +147,7 @@ public class Item implements Serializable {
 
   @Override
   public String toString() {
-    return "(" + getItemId() + "-" + getProduct().getProductId() + ")";
+    return "(" + getItemId() + "-" + getProductId() + ")";
   }
 
 }

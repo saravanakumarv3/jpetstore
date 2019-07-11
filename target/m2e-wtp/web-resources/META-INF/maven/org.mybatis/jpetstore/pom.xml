@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-       Copyright ${license.git.copyrightYears} the original author or authors.
+       Copyright 2010-2019 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
   <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>31</version>
+    <version>30</version>
     <relativePath />
   </parent>
 
@@ -58,14 +58,19 @@
 
   <dependencies>
     <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.0</version>
+      <version>3.4.6</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
-      <version>2.0.0</version>
+      <version>1.3.2</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -122,21 +127,15 @@
 
     <!-- Test dependencies -->
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.4.1</version>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <version>5.2.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>2.25.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-junit-jupiter</artifactId>
-      <version>2.25.1</version>
+      <version>2.19.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -148,7 +147,13 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
-      <version>5.2.2</version>
+      <version>4.12.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>htmlunit-driver</artifactId>
+      <version>2.31.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -209,7 +214,7 @@
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven2-plugin</artifactId>
-          <version>${cargo-maven2-plugin.version}</version>
+          <version>1.6.8</version>
           <configuration>
             <container>
               <containerId>${cargo.maven.containerId}</containerId>
@@ -225,6 +230,11 @@
             </daemon>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.1</version>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -235,14 +245,12 @@
     <tomcat.major-version />
     <tomcat.version />
 
-    <surefire.version>3.0.0-M3</surefire.version>
-    <cargo-maven2-plugin.version>1.7.3</cargo-maven2-plugin.version>
+    <surefire.version>2.22.0</surefire.version>
     <clirr.comparisonVersion>6.0.2</clirr.comparisonVersion>
 
-    <spring.version>5.1.6.RELEASE</spring.version>
-    <assertj.version>3.12.2</assertj.version>
-    <hsqldb.version>2.4.1</hsqldb.version>
-    <module.name>org.mybatis.jpetstore</module.name>
+    <spring.version>5.0.7.RELEASE</spring.version>
+    <assertj.version>3.9.1</assertj.version>
+    <hsqldb.version>2.4.0</hsqldb.version>
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <cucumber.version>1.2.4</cucumber.version>
@@ -284,71 +292,69 @@
       </activation>
       <properties>
         <tomcat.major-version>9</tomcat.major-version>
-        <tomcat.version>9.0.17</tomcat.version>
+        <tomcat.version>9.0.8</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat85</id>
       <properties>
         <tomcat.major-version>8</tomcat.major-version>
-        <tomcat.version>8.5.39</tomcat.version>
+        <tomcat.version>8.5.31</tomcat.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>tomcat80</id>
+      <properties>
+        <tomcat.major-version>8</tomcat.major-version>
+        <tomcat.version>8.0.52</tomcat.version>
       </properties>
     </profile>
     <profile>
       <id>tomcat70</id>
       <properties>
         <tomcat.major-version>7</tomcat.major-version>
-        <tomcat.version>7.0.93</tomcat.version>
+        <tomcat.version>7.0.88</tomcat.version>
       </properties>
     </profile>
     <profile>
-      <id>tomee80</id>
-      <properties>
-        <tomee.major-version>8</tomee.major-version>
-        <tomee.version>8.0.0-M2</tomee.version>
-        <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
-      </properties>
-    </profile>
-    <profile>
-      <id>tomee71</id>
+      <id>tomee</id>
       <properties>
         <tomee.major-version>7</tomee.major-version>
-        <tomee.version>7.1.0</tomee.version>
+        <tomee.version>7.0.4</tomee.version>
         <cargo.maven.containerId>tomee${tomee.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/apache/tomee/apache-tomee/${tomee.version}/apache-tomee-${tomee.version}-plume.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
-      <id>wildfly16</id>
+      <id>wildfly12</id>
       <properties>
-        <wildfly.major-version>16</wildfly.major-version>
-        <wildfly.version>16.0.0.Final</wildfly.version>
+        <wildfly.major-version>12</wildfly.major-version>
+        <wildfly.version>12.0.0.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
-      <id>wildfly13</id>
+      <id>wildfly11</id>
       <properties>
-        <wildfly.major-version>13</wildfly.major-version>
-        <wildfly.version>13.0.0.Final</wildfly.version>
+        <wildfly.major-version>11</wildfly.major-version>
+        <wildfly.version>11.0.0.Final</wildfly.version>
         <cargo.maven.containerId>wildfly${wildfly.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://download.jboss.org/wildfly/${wildfly.version}/wildfly-${wildfly.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
-      <id>liberty-ee8</id>
+      <id>liberty18</id>
       <properties>
-        <liberty.version>19.0.0.3</liberty.version>
+        <liberty.version>18.0.0.1</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
-        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee8/${liberty.version}/wlp-javaee8-${liberty.version}.zip</cargo.maven.containerUrl>
+        <cargo.maven.containerUrl>http://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
     </profile>
     <profile>
-      <id>liberty-ee7</id>
+      <id>liberty17</id>
       <properties>
-        <liberty.version>19.0.0.3</liberty.version>
+        <liberty.version>17.0.0.4</liberty.version>
         <cargo.maven.containerId>liberty</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/com/ibm/websphere/appserver/runtime/wlp-javaee7/${liberty.version}/wlp-javaee7-${liberty.version}.zip</cargo.maven.containerUrl>
       </properties>
@@ -357,7 +363,7 @@
       <id>jetty</id>
       <properties>
         <jetty.major-version>9</jetty.major-version>
-        <jetty.version>9.4.15.v20190215</jetty.version>
+        <jetty.version>9.4.11.v20180605</jetty.version>
         <cargo.maven.containerId>jetty${jetty.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty.version}/jetty-distribution-${jetty.version}.tar.gz</cargo.maven.containerUrl>
       </properties>
@@ -384,10 +390,38 @@
       <id>resin</id>
       <properties>
         <resin.major-version>4</resin.major-version>
-        <resin.version>4.0.61</resin.version>
+        <resin.version>4.0.56</resin.version>
         <cargo.maven.containerId>resin${resin.major-version}x</cargo.maven.containerId>
         <cargo.maven.containerUrl>http://www.caucho.com/download/resin-${resin.version}.zip</cargo.maven.containerUrl>
       </properties>
+    </profile>
+    <!-- Profiles for JDK version -->
+    <profile>
+      <id>jdk7</id>
+      <activation>
+        <jdk>1.7</jdk>
+      </activation>
+      <properties>
+        <spring.version>4.3.18.RELEASE</spring.version>
+        <assertj.version>2.9.0</assertj.version>
+        <hsqldb.version>2.3.5</hsqldb.version>
+        <surefire.version>2.21.0</surefire.version>
+      </properties>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                <testExcludes>
+                  <testExclude>**/*IT.java</testExclude>
+                </testExcludes>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
     </profile>
   </profiles>
 

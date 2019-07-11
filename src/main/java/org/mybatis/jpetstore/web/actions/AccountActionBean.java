@@ -1,5 +1,5 @@
 /**
- *    Copyright ${license.git.copyrightYears} the original author or authors.
+ *    Copyright 2010-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package org.mybatis.jpetstore.web.actions;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,8 +61,18 @@ public class AccountActionBean extends AbstractActionBean {
   private boolean authenticated;
 
   static {
-    LANGUAGE_LIST = Collections.unmodifiableList(Arrays.asList("english", "japanese"));
-    CATEGORY_LIST = Collections.unmodifiableList(Arrays.asList("FISH", "DOGS", "REPTILES", "CATS", "BIRDS"));
+    List<String> langList = new ArrayList<String>();
+    langList.add("english");
+    langList.add("japanese");
+    LANGUAGE_LIST = Collections.unmodifiableList(langList);
+
+    List<String> catList = new ArrayList<String>();
+    catList.add("FISH");
+    catList.add("DOGS");
+    catList.add("REPTILES");
+    catList.add("CATS");
+    catList.add("BIRDS");
+    CATEGORY_LIST = Collections.unmodifiableList(catList);
   }
 
   public Account getAccount() {

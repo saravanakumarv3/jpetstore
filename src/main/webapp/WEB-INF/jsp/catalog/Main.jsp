@@ -1,6 +1,6 @@
 <%--
 
-       Copyright ${license.git.copyrightYears} the original author or authors.
+       Copyright 2010-2019 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -55,14 +55,14 @@ Various Breeds, Exotic Varieties <br />
 	<stripes:param name="categoryId" value="REPTILES" />
 	<img src="../images/reptiles_icon.gif" />
 </stripes:link> <br />
-Lizards, Turtles, Snakes <br />
+Lizards, Turtles, Snakes<br />
 <stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
 	event="viewCategory">
 	<stripes:param name="categoryId" value="BIRDS" />
 	<img src="../images/birds_icon.gif" />
 </stripes:link> <br />
-Exotic Varieties</div>
+Exotic Varieties  </div>
 </div>
 
 <div id="MainImage">
@@ -85,8 +85,12 @@ Exotic Varieties</div>
 	usemap="#estoremap" width="350" /></div>
 </div>
 
+	
+<div>
+<a href="https://about.petco.com/2016-05-17-Petco-Features-7-Point-Pet-Care-Check-in-New-Grooming-Campaign" shape="RECT" target="_blank"><img src="../images/new_grooming_campaign.gif"></a>
+</div> 
+
+
 <div id="Separator">&nbsp;</div>
 </div>
-
 <%@ include file="../common/IncludeBottom.jsp"%>
-

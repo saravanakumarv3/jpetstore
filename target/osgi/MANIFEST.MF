@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
-Automatic-Module-Name: org.mybatis.jpetstore
-Bnd-LastModified: 1562822323518
+Bnd-LastModified: 1562830975775
 Build-Jdk: 1.8.0_211
 Built-By: saravanakumar.velus
 Bundle-Description: The MyBatis parent POM.
@@ -16,7 +15,7 @@ Export-Package: org.mybatis.jpetstore.domain;version="6.0.3.SNAPSHOT",or
  g.mybatis.jpetstore.mapper;version="6.0.3.SNAPSHOT",org.mybatis.jpetsto
  re.service;version="6.0.3.SNAPSHOT",org.mybatis.jpetstore.web.actions;v
  ersion="6.0.3.SNAPSHOT"
-Implementation-Build-Date: 2019-07-11 05:18:37+0000
+Implementation-Build-Date: 2019-07-11 07:42:48+0000
 Implementation-Title: JPetStore Demo 6
 Implementation-URL: http://www.mybatis.org
 Implementation-Vendor: MyBatis.org
@@ -24,8 +23,8 @@ Implementation-Vendor-Id: org.mybatis
 Implementation-Version: 6.0.3-SNAPSHOT
 Import-Package: javax.servlet.http,net.sourceforge.stripes.action,net.so
  urceforge.stripes.integration.spring,net.sourceforge.stripes.validation
- ,org.springframework.stereotype,org.springframework.transaction.annotat
- ion
+ ,org.springframework.beans.factory.annotation,org.springframework.stere
+ otype,org.springframework.transaction.annotation
 Include-Resource: {database/jpetstore-hsqldb-dataload.sql=src/main/resou
  rces/database/jpetstore-hsqldb-dataload.sql},{database/jpetstore-hsqldb
  -schema.sql=src/main/resources/database/jpetstore-hsqldb-schema.sql},{l
@@ -44,10 +43,10 @@ Include-Resource: {database/jpetstore-hsqldb-dataload.sql=src/main/resou
  },{StripesResources.properties=src/main/resources/StripesResources.prop
  erties},META-INF/LICENSE=LICENSE,META-INF/NOTICE=NOTICE
 Private-Package: database
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
 Specification-Title: JPetStore Demo 6
 Specification-Vendor: MyBatis.org
 Specification-Version: 6.0.3-SNAPSHOT
-Tool: Bnd-4.1.0.201810181252
-X-Compile-Source-JDK: 1.8
-X-Compile-Target-JDK: 1.8
+Tool: Bnd-3.3.0.201609221906
+X-Compile-Source-JDK: 1.6
+X-Compile-Target-JDK: 1.6

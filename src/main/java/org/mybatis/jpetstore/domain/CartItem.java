@@ -1,5 +1,5 @@
 /**
- *    Copyright ${license.git.copyrightYears} the original author or authors.
+ *    Copyright 2010-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Optional;
 
 /**
  * The Class CartItem.
@@ -69,8 +68,11 @@ public class CartItem implements Serializable {
   }
 
   private void calculateTotal() {
-    total = Optional.ofNullable(item).map(Item::getListPrice).map(v -> v.multiply(new BigDecimal(quantity)))
-        .orElse(null);
+    if (item != null && item.getListPrice() != null) {
+      total = item.getListPrice().multiply(new BigDecimal(quantity));
+    } else {
+      total = null;
+    }
   }
 
 }
