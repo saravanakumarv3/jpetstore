@@ -18,9 +18,11 @@ package org.mybatis.cuketest;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import java.lang.*;
 
 public class stepDefinition {
   WebDriver webDriver = null;
@@ -31,13 +33,18 @@ public class stepDefinition {
   }
 
   @When("^I navigate to index\\.html page$")
-  public void iNavigateToLoginHtmlPage() throws Throwable {
+  public void iNavigateToIndexHtmlPage() throws Throwable {
     webDriver.get(DriverInitializer.getProperty("login.url"));
   }
 
-  @When("^I click Enter the store link$")
-  public void iProvideUsernameAsHiAndPasswordAsHi() throws Throwable {
+  @And("^I click on Enter the store button$")
+  public void iClickEnerthestorebutton() throws Throwable {
     WebElement webElement = webDriver.findElement(By.id("enter"));
     webElement.click();
+  }
+
+  @Then("^Store should be visible$")
+  public void iStorevisible() throws Throwable {
+    System.out.println("Welcome to the store");
   }
 }

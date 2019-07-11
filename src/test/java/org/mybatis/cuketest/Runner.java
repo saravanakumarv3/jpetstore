@@ -20,8 +20,8 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/Feature", glue = { "stepDefinition" }, plugin = { "pretty",
-    "json:target/cucumber.json" })
+@CucumberOptions(features = "src/test/resources/Feature", glue = {
+    "src/test/java/org/mybatis/cuketest/stepDefinition" }, plugin = { "pretty", "json:target/cucumber.json" })
 public class Runner {
 
 }
