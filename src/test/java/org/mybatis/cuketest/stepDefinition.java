@@ -35,18 +35,9 @@ public class stepDefinition {
     webDriver.get(DriverInitializer.getProperty("login.url"));
   }
 
-  @When("^I provide username as hi and password as hi$")
+  @When("^I click Enter the store link$")
   public void iProvideUsernameAsHiAndPasswordAsHi() throws Throwable {
-    WebElement webElement = webDriver.findElement(By.id("username"));
-    webElement.sendKeys("hi");
-    webElement = webDriver.findElement(By.id("password"));
-    webElement.sendKeys("hi");
-  }
-
-  @When("^I click on login button$")
-  public void iClickOnLoginButton() throws Throwable {
-    WebElement webElement = webDriver.findElement(By.id("login-btn"));
+    WebElement webElement = webDriver.findElement(By.id("enter"));
     webElement.click();
   }
-
 }

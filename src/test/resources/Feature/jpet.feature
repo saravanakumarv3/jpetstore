@@ -5,5 +5,4 @@ Feature: Login
     Given I open chrome browser
     When I navigate to index.html page
     And I click on login button
-    And I click on login button
     Then hi should be name
